@@ -1,5 +1,25 @@
 document.getElementById("submitBtn").addEventListener("click", checkAnswers);
 document.getElementById("resetBtn").addEventListener("click", resetQuiz);
+document.getElementById("submitBtn").addEventListener("click", function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  const questions = document.querySelectorAll(".question");
+  let unanswered = false;
+
+  questions.forEach(question => {
+      const selectedAnswer = question.querySelector('input[type="radio"]:checked');
+      if (!selectedAnswer) {
+          unanswered = true;
+      }
+  });
+
+  if (unanswered) {
+      alert("Oops, Answer all the questions.");
+  } else {
+      checkAnswers(); // Call your function to check answers
+  }
+}
+)
 
 function checkAnswers() {
   const correctAnswers = {

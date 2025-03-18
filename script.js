@@ -3,6 +3,26 @@ let scores = [];
 
 document.getElementById("submitBtn").addEventListener("click", checkAnswers);
 document.getElementById("resetBtn").addEventListener("click", resetQuiz);
+document.getElementById("submitBtn").addEventListener("click", function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  const questions = document.querySelectorAll(".question");
+  let unanswered = false;
+
+  questions.forEach(question => {
+      const selectedAnswer = question.querySelector('input[type="radio"]:checked');
+      if (!selectedAnswer) {
+          unanswered = true;
+      }
+  });
+
+  if (unanswered) {
+      alert("Sabhi sawalon ke jawab do phir submit karo!😡");
+  } else {
+      checkAnswers(); // Call your function to check answers
+  }
+}
+)
 
 // Check answers function with scoreboard logic
 function checkAnswers() {
